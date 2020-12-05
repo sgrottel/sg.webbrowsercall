@@ -8,9 +8,94 @@ namespace SG.WBC.ExampleConsoleApp
 		{
 			Console.WriteLine("SG.WebBrowserCall -- Example Console App");
 
-			Console.WriteLine("TODO: Implement");
-			var o = new SG.WebBrowserCall.Class1();
+			Console.WriteLine();
+			Console.WriteLine("Empty Object:");
+			try
+			{
+				var o = new WebBrowserCall.WebBrowser();
+				printInfo(o);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Exception: {0}", e);
+			}
 
+			Console.WriteLine();
+			Console.WriteLine("Found Web Browsers:");
+			try
+			{
+				var bs = WebBrowserCall.WebBrowser.GetInstalledBrowsers();
+				if (bs != null)
+				{
+					foreach (var b in bs)
+					{
+						printInfo(b);
+					}
+				}
+				else
+				{
+					Console.WriteLine("Returned Null Array");
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Exception: {0}", e);
+			}
+
+			Console.WriteLine();
+			Console.WriteLine("Default Browser:");
+			try
+			{
+				var o = WebBrowserCall.WebBrowser.GetDefaultBrowser();
+				printInfo(o);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Exception: {0}", e);
+			}
+
+			Console.WriteLine();
+			Console.WriteLine("Opening pages in all browsers:");
+			try
+			{
+				var bs = WebBrowserCall.WebBrowser.GetInstalledBrowsers();
+				if (bs != null)
+				{
+					foreach (var b in bs)
+					{
+						printInfo(b);
+						try
+						{
+							b.Open("https://www.sgrottel.de");
+						}
+						catch (Exception e)
+						{
+							Console.WriteLine("Exception: {0}", e);
+						}
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Exception: {0}", e);
+			}
+
+			Console.WriteLine();
+			Console.WriteLine("End");
+		}
+
+		private static void printInfo(WebBrowserCall.WebBrowser o)
+		{
+			if (o == null)
+			{
+				Console.WriteLine("null object");
+				return;
+			}
+
+			Console.WriteLine("{0}{1} ({2})",
+				o.ProductFamily,
+				o.IsDefault ? " [Default]" : "",
+				o.ExecutablePath);
 		}
 	}
 }
