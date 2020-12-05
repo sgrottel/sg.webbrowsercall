@@ -56,21 +56,29 @@ namespace SG.WBC.ExampleConsoleApp
 
 			Console.WriteLine();
 			Console.WriteLine("Opening pages in all browsers:");
+			bool skipOpenTest = true;
 			try
 			{
-				var bs = WebBrowserCall.WebBrowser.GetInstalledBrowsers();
-				if (bs != null)
+				if (skipOpenTest)
 				{
-					foreach (var b in bs)
+					Console.WriteLine("Skipped");
+				}
+				else
+				{
+					var bs = WebBrowserCall.WebBrowser.GetInstalledBrowsers();
+					if (bs != null)
 					{
-						printInfo(b);
-						try
+						foreach (var b in bs)
 						{
-							b.Open("https://www.sgrottel.de");
-						}
-						catch (Exception e)
-						{
-							Console.WriteLine("Exception: {0}", e);
+							printInfo(b);
+							try
+							{
+								b.Open("https://www.sgrottel.de");
+							}
+							catch (Exception e)
+							{
+								Console.WriteLine("Exception: {0}", e);
+							}
 						}
 					}
 				}
