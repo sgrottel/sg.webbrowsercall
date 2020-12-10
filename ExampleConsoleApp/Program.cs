@@ -100,10 +100,14 @@ namespace SG.WBC.ExampleConsoleApp
 				return;
 			}
 
-			Console.WriteLine("{0}{1} ({2})",
-				o.ProductFamily,
-				o.IsDefault ? " [Default]" : "",
-				o.ExecutablePath);
+			Console.WriteLine("\"{3}\" {0}{1} ({2}; {4})",
+				new object[] {
+					o.ProductFamily,
+					o.IsDefault ? " [Default]" : "",
+					o.ExecutablePath,
+					o.Name,
+					o.IconInfo
+				});
 		}
 	}
 }

@@ -6,11 +6,14 @@ namespace SG.WebBrowserCall
 	/// <summary>
 	/// Represents a web browser
 	/// </summary>
+	/// <remarks>
+	/// https://stackoverflow.com/a/2370850
+	/// </remarks>
 	public class WebBrowser
 	{
 
 		/// <summary>
-		/// Flag whether or not this web browser is the system default to open https links.
+		/// Flag whether or not this web browser is the system default to open https links
 		/// </summary>
 		/// <remarks>
 		/// If none of the known web browsers are detected as default, an generic unknown web browser object will be created.
@@ -19,18 +22,30 @@ namespace SG.WebBrowserCall
 		public bool IsDefault { get; private set; } = false;
 
 		/// <summary>
-		/// The product family of this web browser
+		/// Product family of this web browser
 		/// </summary>
 		public ProductFamily ProductFamily { get; private set; } = ProductFamily.Unknown;
 
 		/// <summary>
-		/// Gets the path to the installed main executable of the web browser.
+		/// Human-readable name
 		/// </summary>
-		/// <remarks>This can be null or empty, in case the installation path could not be determined</remarks>
+		/// <remarks>This can be null or empty, in case the browser is unknown.</remarks>
+		public string Name { get; private set; } = null;
+
+		/// <summary>
+		/// Path to the installed main executable of the web browser
+		/// </summary>
+		/// <remarks>This can be null or empty, in case the installation path could not be determined.</remarks>
 		public string ExecutablePath { get; private set; } = null;
 
 		/// <summary>
-		/// The action to open an url in this web browser
+		/// Path to the icon representing this web browser
+		/// </summary>
+		/// <remarks>This can be null or empty, in case the icon path could not be determined.</remarks>
+		public string IconInfo { get; private set; } = null;
+
+		/// <summary>
+		/// Action to open an url in this web browser
 		/// </summary>
 		private Action<string> open = null;
 
