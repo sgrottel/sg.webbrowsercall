@@ -2,6 +2,10 @@
 
 namespace SG.WBC.ExampleConsoleApp
 {
+
+	/// <summary>
+	/// Minimal test program, to print info about detected browsers to the console
+	/// </summary>
 	class Program
 	{
 		static void Main(string[] args)
@@ -54,6 +58,8 @@ namespace SG.WBC.ExampleConsoleApp
 				Console.WriteLine("Exception: {0}", e);
 			}
 
+			// Optional test to open URLs in all browsers
+			// This is skipped on default, because it is annoying
 			Console.WriteLine();
 			Console.WriteLine("Opening pages in all browsers:");
 			bool skipOpenTest = true;
@@ -92,6 +98,10 @@ namespace SG.WBC.ExampleConsoleApp
 			Console.WriteLine("End");
 		}
 
+		/// <summary>
+		/// Print info about a browser object
+		/// </summary>
+		/// <param name="o">A browser object</param>
 		private static void printInfo(WebBrowserCall.WebBrowser o)
 		{
 			if (o == null)
